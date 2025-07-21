@@ -7,6 +7,7 @@ use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
+use App\Controller\Api\Review\PostReviewController;
 use App\Repository\ReviewRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -16,11 +17,13 @@ use Symfony\Component\Serializer\Attribute\Groups;
 #[ApiResource(
     operations: [
         new Post(
-            normalizationContext: [
-                'groups' => [
-                    'review:post'
-                ],
-            ],
+            uriTemplate: '/reviews/{id}',
+            controller: PostReviewController::class,
+//            normalizationContext: [
+//                'groups' => [
+//                    'review:post'
+//                ],
+//            ],
             denormalizationContext: [
                 'groups' => 'review:post',
             ]
@@ -48,47 +51,33 @@ class Review
     private ?int $id = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    #[Groups(
-        'review:post'
-    )]
+    #[Groups(['review:collection', 'review:post'])]
     private ?string $content = null;
 
     #[ORM\Column]
-    #[Groups(
-        'review:post'
-    )]
+    #[Groups(['review:collection', 'review:item'])]
     private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\Column]
-    #[Groups(
-        'review:post'
-    )]
+    #[Groups(['review:collection', 'review:item'])]
     private ?int $downVote = 0;
 
     #[ORM\Column]
-    #[Groups(
-        'review:post'
-    )]
+    #[Groups(['review:collection', 'review:item'])]
     private ?int $upVote = 0;
 
     #[ORM\Column]
-    #[Groups(
-        'review:post'
-    )]
+    #[Groups(['review:collection', 'review:post'])]
     private ?float $rating = null;
 
     #[ORM\ManyToOne(inversedBy: 'reviews')]
     #[ORM\JoinColumn(nullable: false)]
-    #[Groups(
-        'userOwnGame:post'
-    )]
+    #[Groups(['review:collection', 'review:item'])]
     private ?User $user = null;
 
     #[ORM\ManyToOne(inversedBy: 'reviews')]
     #[ORM\JoinColumn(nullable: false)]
-    #[Groups(
-        'userOwnGame:post'
-    )]
+    #[Groups(['review:collection', 'review:item'])]
     private ?Game $game = null;
 
     public function getId(): ?int

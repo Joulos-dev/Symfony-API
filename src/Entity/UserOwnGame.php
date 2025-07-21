@@ -5,6 +5,7 @@ namespace App\Entity;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
+use App\Controller\Api\Review\PostReviewController;
 use App\Repository\UserOwnGameRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Attribute\Groups;
@@ -13,6 +14,8 @@ use Symfony\Component\Serializer\Attribute\Groups;
 #[ApiResource(
     operations: [
         new Post(
+            uriTemplate: '/reviews/{id}',
+            controller: PostReviewController::class,
             normalizationContext: [
                 'groups' => [
                     'userOwnGame:post'

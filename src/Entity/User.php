@@ -61,15 +61,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['review:collection:user', 'user:item', 'review:item'])]
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups('user:item')]
     private ?string $nickname = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Groups(['review:collection:user', 'user:item', 'review:item'])]
     private ?string $profileImage = null;
 
     #[ORM\Column]
+    #[Groups('user:item')]
     private ?int $wallet = 0;
 
     #[ORM\ManyToOne(inversedBy: 'users')]

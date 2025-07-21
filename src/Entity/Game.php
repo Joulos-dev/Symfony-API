@@ -71,7 +71,8 @@ class Game
         "category:collection",
         "game:post",
         "game:collection",
-        "country:item"
+        "country:item",
+        'review:item'
     ])]
     private ?string $name = null;
 
@@ -112,7 +113,8 @@ class Game
         "category:item",
         "category:collection",
         "game:post",
-        "game:item"
+        "game:item",
+        'review:item'
     ])]
     private ?string $slug = null;
 
