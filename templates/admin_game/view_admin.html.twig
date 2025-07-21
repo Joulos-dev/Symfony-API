@@ -1,0 +1,27 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}view admin game{% endblock %}
+
+{% block body %}
+
+    <div class="cartes">
+        <div>
+            <img src="{{ game.thumbnailCover }}" alt="image-jeux">
+        </div>
+        <div>
+            <h2>{{ game.name }}</h2>
+            {% for category in game.categories %}
+                <p><strong> Catégorie: </strong> {{ category.name }}</p>
+            {% endfor %}
+            <p><strong> Editeur: </strong> {{ game.publisher.name }}</p>
+            <p><strong> Sortie: </strong> {{ game.publishedAt|date("m/d/Y") }}</p>
+            <p><strong> Prix: </strong> {{ game.price }}</p>
+            <p><strong> Description: </strong> {{ game.description | short }}</p>
+            <p> <strong> Rating: </strong>{{ game | get_rating_avg }}</p>
+
+        </div>
+
+
+    </div>
+
+{% endblock %}

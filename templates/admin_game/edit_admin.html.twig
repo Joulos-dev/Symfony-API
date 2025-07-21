@@ -1,0 +1,47 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Hello AdminGameController!{% endblock %}
+
+{% block body %}
+
+    <h1>Editer un jeux !</h1>
+
+    {{ form_start(newGameForm) }}
+
+    <div>
+        {{ form_row(newGameForm.name) }}
+    </div>
+    <div>
+        {{ form_row(newGameForm.price) }}
+    </div>
+
+    <div>
+        {{ form_row(newGameForm.publisher) }}
+    </div>
+    <div>
+        {{ form_row(newGameForm.publishedAt) }}
+    </div>
+    <div>
+        {{ form_row(newGameForm.thumbnailCover) }}
+    </div>
+    <div>
+        {{ form_row(newGameForm.slug) }}
+
+    </div>
+    <div>
+        {{ form_row(newGameForm.description) }}
+    </div>
+    <div class="form-checkbox">
+        <div>
+            {{ form_row(newGameForm.countries) }}
+        </div>
+        <div>
+            {{ form_row(newGameForm.categories) }}
+        </div>
+    </div>
+
+    <button type="submit">Submit</button>
+
+    {{ form_end(newGameForm) }}
+
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CountryController!{% endblock %}
+
+{% block body %}
+
+    {{ form_start(countryForm) }}
+
+    {{ form_row(countryForm.code) }}
+    {{ form_row(countryForm.name) }}
+    {{ form_row(countryForm.published) }}
+    {{ form_row(countryForm.slug) }}
+    {{ form_row(countryForm.urlFlag) }}
+
+    <button type="submit">Submit</button>
+
+    {{ form_end(countryForm) }}
+
+{% endblock %}
