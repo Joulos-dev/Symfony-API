@@ -77,8 +77,6 @@ final class AdminGameController extends AbstractController
             return $this->redirectToRoute('app_admin_game_list');
         }
 
-
-
         return $this->render('admin_game/edit_admin.html.twig', [
             'newGameForm' => $newGameForm
         ]);
